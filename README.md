@@ -60,15 +60,6 @@ website:    medformatik.de
 
 ---
 
-### 🏥 [Intensive Care Dashboard Germany](https://icu.medformatik.de/)
-> Web application visualizing ICU capacities across Germany — tracking available beds, trends, and geographic differences on an interactive map.
-
-![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
-
----
-
 ### ⛵ [Trimlog](https://trimlog.co/)
 > Mobile app for performance-oriented regatta sailors to optimize boat trim and analyze sailing data. 🏆 Awarded **3rd place** at the STARTUP TEENS Businessplan Challenge.
 
@@ -78,6 +69,15 @@ website:    medformatik.de
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+
+---
+
+### 🏥 [Intensive Care Dashboard Germany](https://github.com/Medformatik/deutschland-intensivkapazitaeten-web)
+> Web application visualizing intensive care unit (ICU) capacities across Germany — tracking available beds, trends, and geographic differences on an interactive map.
+
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
 
 ---
 
