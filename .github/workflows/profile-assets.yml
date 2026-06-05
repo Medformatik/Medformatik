@@ -1,0 +1,51 @@
+name: Generate Profile Assets
+
+on:
+    schedule:
+        - cron: "0 0 * * *" # runs once a day at midnight UTC
+    workflow_dispatch: # allows manual trigger
+    push:
+        branches:
+            - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        timeout-minutes: 5
+
+        steps:
+            - name: Generate snake SVG
+              uses: Platane/snk@v3.4.1
+              with:
+                  github_user_name: Medformatik
+                  outputs: |
+                      dist/github-snake.svg
+                      dist/github-snake-dark.svg?palette=github-dark
+
+            - name: Fetch streak SVG
+              run: |
+                  URL="https://github-readme-streak-stats-medformatik.vercel.app?user=Medformatik&theme=tokyonight&hide_border=true&background=0D1117&ring=2C8EBB&fire=2C8EBB&currStreakLabel=2C8EBB&sideLabels=C9D1D9&dates=6E7681"
+                  # Retry to absorb Vercel cold starts; the Action can afford to wait.
+                  for attempt in 1 2 3 4 5 6; do
+                      echo "Attempt $attempt fetching streak SVG..."
+                      if curl -fsSL --max-time 60 "$URL" -o dist/streak-stats.svg \
+                          && grep -q "</svg>" dist/streak-stats.svg; then
+                          echo "Fetched a complete SVG."
+                          exit 0
+                      fi
+                      echo "Fetch failed or incomplete; waiting before retry..."
+                      sleep 15
+                  done
+                  echo "::error::Could not fetch a complete streak SVG after 6 attempts."
+                  exit 1
+
+            # Single force-push (keep_history defaults to false) replaces the output
+            # branch with exactly the current dist/ contents — snake + streak coexist,
+            # and no stale files or commit history accumulate over time.
+            - name: Push to output branch
+              uses: crazy-max/ghaction-github-pages@v5.0.0
+              with:
+                  target_branch: output
+                  build_dir: dist
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

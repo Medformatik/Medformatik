@@ -131,7 +131,7 @@ website:    medformatik.de
 <div align="center">
 
 <img src="https://github-readme-stats-medformatik.vercel.app/api/top-langs/?username=Medformatik&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=2c8ebb&text_color=c9d1d9&langs_count=8" width="48%" />
-<img src="https://github-readme-streak-stats-medformatik.vercel.app?user=Medformatik&theme=tokyonight&hide_border=true&background=0D1117&ring=2C8EBB&fire=2C8EBB&currStreakLabel=2C8EBB&sideLabels=C9D1D9&dates=6E7681" width="48%" />
+<img src="https://raw.githubusercontent.com/Medformatik/Medformatik/output/streak-stats.svg" alt="GitHub Streak" width="48%" />
 
 </div>
 
