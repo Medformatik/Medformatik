@@ -24,7 +24,10 @@ jobs:
 
             - name: Fetch streak SVG
               run: |
+                  # Platane/snk is a Docker action that runs as root, so dist/ is
+                  # created root-owned; take it back so this step can write into it.
                   mkdir -p dist
+                  sudo chown -R "$(id -u):$(id -g)" dist
                   URL="https://github-readme-streak-stats-medformatik.vercel.app?user=Medformatik&theme=tokyonight&hide_border=true&background=0D1117&ring=2C8EBB&fire=2C8EBB&currStreakLabel=2C8EBB&sideLabels=C9D1D9&dates=6E7681"
                   # Retry to absorb Vercel cold starts; the Action can afford to wait.
                   for attempt in 1 2 3 4 5 6; do
