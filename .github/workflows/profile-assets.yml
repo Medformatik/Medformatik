@@ -37,7 +37,7 @@ jobs:
             # already-created, runner-owned dist/ (this Docker action runs as root,
             # which can write there, avoiding the previous ownership conflict).
             - name: Generate snake SVG
-              uses: Platane/snk@v3.4.1
+              uses: Platane/snk@e2cedf76a2c05b25d09a6428ded69727b497a700 # v3.4.1
               with:
                   github_user_name: Medformatik
                   outputs: |
@@ -48,7 +48,7 @@ jobs:
             # branch with exactly the current dist/ contents — snake + streak coexist,
             # and no stale files or commit history accumulate over time.
             - name: Push to output branch
-              uses: crazy-max/ghaction-github-pages@v5.0.0
+              uses: crazy-max/ghaction-github-pages@1d6ee9b181a81033a16bd707a1401afa978daab4 # v5.0.0
               with:
                   target_branch: output
                   build_dir: dist
