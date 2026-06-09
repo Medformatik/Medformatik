@@ -11,9 +11,26 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
-        timeout-minutes: 5
+        timeout-minutes: 10
 
         steps:
+            - name: Prepare output directory
+              run: mkdir -p dist
+
+            # Generate the streak card directly in CI with the official action,
+            # which pins its own PHP runtime. This replaces the self-hosted Vercel
+            # instance: no cold-start race against GitHub's Camo proxy, and no PHP
+            # version drift leaking "Deprecated" warnings into the SVG output.
+            - name: Generate streak SVG
+              uses: DenverCoder1/github-readme-streak-stats@v1.7.0
+              with:
+                  options: "user=Medformatik&theme=tokyonight&hide_border=true&background=0D1117&ring=2C8EBB&fire=2C8EBB&currStreakLabel=2C8EBB&sideLabels=C9D1D9&dates=6E7681"
+                  path: dist/streak-stats.svg
+                  token: ${{ secrets.GITHUB_TOKEN }}
+
+            # Runs after the streak step so it writes the snake SVGs into the
+            # already-created, runner-owned dist/ (this Docker action runs as root,
+            # which can write there, avoiding the previous ownership conflict).
             - name: Generate snake SVG
               uses: Platane/snk@v3.4.1
               with:
@@ -21,27 +38,6 @@ jobs:
                   outputs: |
                       dist/github-snake.svg
                       dist/github-snake-dark.svg?palette=github-dark
-
-            - name: Fetch streak SVG
-              run: |
-                  # Platane/snk is a Docker action that runs as root, so dist/ is
-                  # created root-owned; take it back so this step can write into it.
-                  mkdir -p dist
-                  sudo chown -R "$(id -u):$(id -g)" dist
-                  URL="https://github-readme-streak-stats-medformatik.vercel.app?user=Medformatik&theme=tokyonight&hide_border=true&background=0D1117&ring=2C8EBB&fire=2C8EBB&currStreakLabel=2C8EBB&sideLabels=C9D1D9&dates=6E7681"
-                  # Retry to absorb Vercel cold starts; the Action can afford to wait.
-                  for attempt in 1 2 3 4 5 6; do
-                      echo "Attempt $attempt fetching streak SVG..."
-                      if curl -fsSL --max-time 60 "$URL" -o dist/streak-stats.svg \
-                          && grep -q "</svg>" dist/streak-stats.svg; then
-                          echo "Fetched a complete SVG."
-                          exit 0
-                      fi
-                      echo "Fetch failed or incomplete; waiting before retry..."
-                      sleep 15
-                  done
-                  echo "::error::Could not fetch a complete streak SVG after 6 attempts."
-                  exit 1
 
             # Single force-push (keep_history defaults to false) replaces the output
             # branch with exactly the current dist/ contents — snake + streak coexist,
