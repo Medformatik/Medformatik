@@ -12,6 +12,11 @@ jobs:
     build:
         runs-on: ubuntu-latest
         timeout-minutes: 10
+        # Minimum needed: the publish step pushes to the output branch. Drops every
+        # other scope from the default token so a compromised action cannot open
+        # PRs, write packages, edit issues, etc. (per-step scoping isn't supported).
+        permissions:
+            contents: write
 
         steps:
             - name: Prepare output directory
@@ -22,7 +27,7 @@ jobs:
             # instance: no cold-start race against GitHub's Camo proxy, and no PHP
             # version drift leaking "Deprecated" warnings into the SVG output.
             - name: Generate streak SVG
-              uses: DenverCoder1/github-readme-streak-stats@v1.7.0
+              uses: DenverCoder1/github-readme-streak-stats@51cfb8879073b4c016ce6286016de0b14d179077 # v1.7.0
               with:
                   options: "user=Medformatik&theme=tokyonight&hide_border=true&background=0D1117&ring=2C8EBB&fire=2C8EBB&currStreakLabel=2C8EBB&sideLabels=C9D1D9&dates=6E7681"
                   path: dist/streak-stats.svg
