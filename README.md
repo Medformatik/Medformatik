@@ -51,6 +51,27 @@ website:    medformatik.de
 
 ## 🚀 Projects
 
+### 🗺️ [OpenMapX](https://github.com/OpenMapX/openmapx)
+> A fully **self-hostable, open-data mapping platform** — built entirely from open-source services and open data. Geocoding, routing, public transit, street-level imagery and POI search, all generated on-demand from declarative plugin manifests.
+
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![PostGIS](https://img.shields.io/badge/PostGIS-336791?style=flat-square&logo=postgresql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+
+---
+
+### 📤 [CrossDrop](https://github.com/Medformatik/CrossDrop)
+> A partial implementation of Google's Quick Share in Flutter for **macOS, iOS and Linux** — share files, links and text with Android devices straight from your menu bar, with PIN/QR pairing and configurable visibility.
+
+![Flutter](https://img.shields.io/badge/Flutter-02569B?style=flat-square&logo=flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-0175C2?style=flat-square&logo=dart&logoColor=white)
+![macOS](https://img.shields.io/badge/macOS-000000?style=flat-square&logo=apple&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
+
+---
+
 ### 🚑 [KiNA](https://kina-app.de/)
 > Paediatric emergency app supporting medical professionals in preclinical and clinical emergency medicine in the care of paediatric patients with life-threatening conditions. Developed in close collaboration with project partners from emergency medical services.
 
